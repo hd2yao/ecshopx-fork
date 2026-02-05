@@ -4257,3 +4257,48 @@ state { params: '[]' }
 
 [friendly-errors] Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
 [friendly-errors] 
+↻ Updated .env
+- Removed .env
+build template: undefined, mode: undefined
+VUE_APP_TITLE=云店连锁Demo
+VUE_APP_HOST=http://localhost:3000
+VUE_APP_API_BASE_URL=http://127.0.0.1:9058
+VUE_APP_COMPANYID=1
+VUE_APP_DEFAULT_LANG=en
+
+ WARN  mode option is deprecated. You can safely remove it from nuxt.config
+
+
+ WARN  extractCSS cannot work with parallel build due to limited work pool in thread-loader
+
+ℹ Listening on: http://192.168.7.101:3000/
+ℹ Preparing project for development
+ℹ Initial build may take a while
+✔ Builder initialized
+
+ WARN  [nuxt-i18n] Error parsing "nuxtI18n" component option in file "/Users/dysania/program/ecshopx-all/ECShopX_desktop-frontend/src/pages/cashier/index-copy.vue"
+
+
+ WARN  [nuxt-i18n] Couldn't read page component file (ENOENT: no such file or directory, open '/Users/dysania/program/ecshopx-all/ECShopX_desktop-frontend/src/pages/index')
+
+
+ WARN  [nuxt-i18n] Couldn't read page component file (EISDIR: illegal operation on a directory, read)
+
+
+ WARN  [nuxt-i18n] Couldn't read page component file (EISDIR: illegal operation on a directory, read)
+
+✔ Nuxt files generated
+[webpackbar] ℹ Compiling Client
+[webpackbar] ℹ Compiling Server
+
+ WARN  You did not set any plugins, parser, or stringifier. Right now, PostCSS does nothing. Pick plugins for your case on https://www.postcss.parts/ and use them in postcss.config.js.
+
+
+ WARN  You did not set any plugins, parser, or stringifier. Right now, PostCSS does nothing. Pick plugins for your case on https://www.postcss.parts/ and use them in postcss.config.js.
+
+
+ WARN  You did not set any plugins, parser, or stringifier. Right now, PostCSS does nothing. Pick plugins for your case on https://www.postcss.parts/ and use them in postcss.config.js.
+
+
+ WARN  You did not set any plugins, parser, or stringifier. Right now, PostCSS does nothing. Pick plugins for your case on https://www.postcss.parts/ and use them in postcss.config.js.
+
