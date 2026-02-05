@@ -37,3 +37,7 @@ This log tracks startup blockers and their resolutions. Check here first when er
   Resolution: After `lang:init ar-SA`, re-run `php artisan doctrine:migrations:migrate --no-interaction` to refresh menus (prints `update shop menus success!`).
 - Issue: `npm install` warns `EBADENGINE` because current Node is `v23.11.0` but project requires `16.16.0`.
   Status: Dev server still starts, but use Node 16.16.0 for best compatibility.
+
+## 2026-02-05
+- Issue: Desktop 前端启动后提示 `Address 0.0.0.0:3000 is already in use`，Nuxt 自动切换到随机端口，导致访问 `http://localhost:3000` 看到错误或不是当前实例。
+  Resolution: 释放 3000 端口（结束占用进程），重新执行 `npm run dev`，确认服务监听 `:3000`。
