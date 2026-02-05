@@ -1,0 +1,6 @@
+<?php return array (
+  0 => 'zh-CN',
+  1 => 'en-CN',
+  2 => 'ar-SA',
+  3 => 'ar-SA',
+);

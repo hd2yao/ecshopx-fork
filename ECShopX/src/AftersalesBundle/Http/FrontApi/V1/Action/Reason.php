@@ -1,0 +1,67 @@
+<?php
+/**
+ * Copyright 2019-2026 ShopeX
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace AftersalesBundle\Http\FrontApi\V1\Action;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller as Controller;
+use AftersalesBundle\Services\ReasonService;
+use GoodsBundle\Services\MultiLang\MagicLangTrait;
+
+class Reason extends Controller
+{
+    use MagicLangTrait;
+    /**
+     * @SWG\Get(
+     *     path="/aftersales/reason/list",
+     *     summary="获取售后原因列表",
+     *     tags={"售后"},
+     *     description="售后原因列表获取",
+     *     operationId="getSreasonList",
+     *     @SWG\Parameter(
+     *         name="Authorization",
+     *         in="header",
+     *         description="JWT验证token",
+     *         required=true,
+     *         type="string",
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="成功返回结构",
+     *         @SWG\Schema(
+     *             @SWG\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @SWG\Items()
+     *             )
+     *         )
+     *     ),
+     *     @SWG\Response( response="default", description="错误返回结构", @SWG\Schema( type="array", @SWG\Items(ref="#/definitions/AftersalesErrorRespones") ) )
+     * )
+     */
+    public function getSreasonList(Request $request)
+    {
+        $authInfo = $request->get('auth');
+        $companyId = $authInfo['company_id'];
+
+        $lang = $this->getLang();
+        $Reason = new ReasonService();
+        $data_list = $Reason->getList($companyId, 0, $lang);
+
+        return $this->response->array($data_list);
+    }
+}

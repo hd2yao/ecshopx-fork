@@ -1,0 +1,71 @@
+<?php
+/**
+ * Copyright 2019-2026 ShopeX
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace BsPayBundle\Sdk\Request;
+
+use BsPayBundle\Sdk\Enums\FunctionCodeEnum;
+
+/**
+ * 用户信息查询
+ *
+ */
+class V2UserBasicdataQueryRequest extends BaseRequest
+{
+
+    /**
+     * 汇付客户Id
+     */
+    private $huifuId;
+    /**
+     * 请求流水号
+     */
+    private $reqSeqId;
+    /**
+     * 请求日期
+     */
+    private $reqDate;
+
+    public function getFunctionCode() {
+        return FunctionCodeEnum::$V2_USER_BASICDATA_QUERY;
+    }
+
+
+    public function getHuifuId() {
+        return $this->huifuId;
+    }
+
+    public function setHuifuId($huifuId) {
+        $this->huifuId = $huifuId;
+    }
+
+    public function getReqSeqId() {
+        return $this->reqSeqId;
+    }
+
+    public function setReqSeqId($reqSeqId) {
+        $this->reqSeqId = $reqSeqId;
+    }
+
+    public function getReqDate() {
+        return $this->reqDate;
+    }
+
+    public function setReqDate($reqDate) {
+        $this->reqDate = $reqDate;
+    }
+
+}

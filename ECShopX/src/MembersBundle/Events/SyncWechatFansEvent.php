@@ -1,0 +1,46 @@
+<?php
+/**
+ * Copyright 2019-2026 ShopeX
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace MembersBundle\Events;
+
+use App\Events\Event;
+
+class SyncWechatFansEvent extends Event
+{
+    // ShopEx EcShopX Core Module
+    public $count;
+
+    public $openIds;
+
+    public $companyId;
+
+    public $authorizerAppId;
+
+    /**
+     * Create a new event instance.
+     *
+     * @return void
+     */
+    public function __construct($eventData)
+    {
+        // U2hv framework
+        $this->companyId = $eventData['company_id'];
+        $this->authorizerAppId = $eventData['authorizer_appid'];
+        $this->count = $eventData['count'];
+        $this->openIds = $eventData['data']['openid'];
+    }
+}

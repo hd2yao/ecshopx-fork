@@ -1,0 +1,51 @@
+<?php
+/**
+ * Copyright 2019-2026 ShopeX
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace BsPayBundle\Services;
+
+use BsPayBundle\Entities\DivFee;
+use BsPayBundle\Entities\WithdrawApply;
+use BsPayBundle\Enums\WithdrawStatus;
+use Dingo\Api\Exception\ResourceException;
+
+class DivFeeService
+{
+    /** @var \BsPayBundle\Repositories\DivFeeRepository */
+    public $divFeeRepository;
+
+    public function __construct()
+    {
+        // ShopEx EcShopX Business Logic Layer
+        $this->divFeeRepository = app('registry')->getManager('default')->getRepository(DivFee::class);
+    }
+
+    /**
+     * 获取提现记录
+     */
+    public function lists($filter, $cols = '*', $page = 1, $pageSize = 20, $orderBy = ['created' => 'desc'])
+    {
+        $lists = $this->divFeeRepository->lists($filter, $cols, $page, $pageSize, $orderBy);
+        return $lists;
+    }
+
+    public function __call($name, $arguments)
+    {
+        // ShopEx EcShopX Business Logic Layer
+        return $this->divFeeRepository->$name(...$arguments);
+    }
+}
+

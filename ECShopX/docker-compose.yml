@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:10.11
+    container_name: ecshopx-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: ecshopx
+      MYSQL_USER: ecshopx
+      MYSQL_PASSWORD: ecshopx
+    ports:
+      - "3307:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    container_name: ecshopx-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  mariadb-data:
+  redis-data:
