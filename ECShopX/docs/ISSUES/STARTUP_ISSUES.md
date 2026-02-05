@@ -41,3 +41,5 @@ This log tracks startup blockers and their resolutions. Check here first when er
 ## 2026-02-05
 - Issue: Desktop 前端启动后提示 `Address 0.0.0.0:3000 is already in use`，Nuxt 自动切换到随机端口，导致访问 `http://localhost:3000` 看到错误或不是当前实例。
   Resolution: 释放 3000 端口（结束占用进程），重新执行 `npm run dev`，确认服务监听 `:3000`。
+- Issue: Desktop 页面点击后出现 CORS 报错（页面刷新后偶尔恢复）。原因是浏览器实际访问的是 `http://192.168.7.101:3000`，但后端 `CORS_ALLOWED_ORIGINS` 仅允许 `localhost/127.0.0.1`。
+  Resolution: 在 `ECShopX/.env` 的 `CORS_ALLOWED_ORIGINS` 中加入 `http://192.168.7.101:3000`（或直接使用 `http://localhost:3000` 访问），并重启后端服务。
