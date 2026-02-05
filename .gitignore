@@ -4,3 +4,4 @@
 .env.local
 .env.*.local
 .env.bak
+ECShopX_desktop-frontend/devserver.log
