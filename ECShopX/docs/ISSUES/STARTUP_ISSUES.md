@@ -43,3 +43,6 @@ This log tracks startup blockers and their resolutions. Check here first when er
   Resolution: 释放 3000 端口（结束占用进程），重新执行 `npm run dev`，确认服务监听 `:3000`。
 - Issue: Desktop 页面点击后出现 CORS 报错（页面刷新后偶尔恢复）。原因是浏览器实际访问的是 `http://192.168.7.101:3000`，但后端 `CORS_ALLOWED_ORIGINS` 仅允许 `localhost/127.0.0.1`。
   Resolution: 在 `ECShopX/.env` 的 `CORS_ALLOWED_ORIGINS` 中加入 `http://192.168.7.101:3000`（或直接使用 `http://localhost:3000` 访问），并重启后端服务。
+- Issue: 新增收货地址接口 `/api/h5app/wxapp/member/address` 返回 `Undefined array key "type"`。
+  Root cause: 未配置地图服务时 `MapService::make()` 读取 `type` 失败导致异常。
+  Resolution: 在 `MemberAddressService::appendLngAndLat()` 中捕获异常，地图配置为空时跳过经纬度计算并记录日志。

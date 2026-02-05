@@ -182,9 +182,18 @@ class MemberAddressService
         $params["lat"] = ""; // 经度
         $params["lng"] = ""; // 纬度
         if (isset($params["province"]) && isset($params["city"]) && isset($params["adrdetail"])) {
-            $mapData = MapService::make($companyId)->getLatAndLng($params["province"].$params["city"], $params["adrdetail"]);
-            $params["lat"] = $mapData->getLat(); // 经度
-            $params["lng"] = $mapData->getLng(); // 纬度
+            try {
+                $mapData = MapService::make($companyId)->getLatAndLng($params["province"].$params["city"], $params["adrdetail"]);
+                $params["lat"] = $mapData->getLat(); // 经度
+                $params["lng"] = $mapData->getLng(); // 纬度
+            } catch (\Throwable $e) {
+                // 地图配置为空或第三方异常时，跳过经纬度计算
+                app("log")->info(sprintf("%s_%s:%s", static::class, __METHOD__, jsonEncode([
+                    "message" => $e->getMessage(),
+                    "file" => $e->getFile(),
+                    "line" => $e->getLine()
+                ])));
+            }
 //            (new TencentMapRequest)->getLngAndLat($params["lng"],$params["lat"],(string)$params["city"], (string)$params["adrdetail"]);
         }
     }
